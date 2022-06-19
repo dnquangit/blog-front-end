@@ -1,0 +1,9 @@
+.scrollbar {
+  overflow-y: auto;
+}
+
+.avatar {
+  border: 3px solid #FFF;
+  box-shadow: 0 0 0 3px #1c84d9;
+  border-radius: 50%;
+}

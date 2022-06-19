@@ -1,0 +1,13 @@
+<div>
+  <div class="mt-[30px] px-[30px]">
+    <div class="w-[32px] h-[32px] avatar"><img class="w-full h-full object-cover rounded-[50%]" src="https://miro.medium.com/max/1400/1*mWUzwICKzj6a2lvyRYV3rg.jpeg" alt="avatar" /></div>
+  </div>
+  <div class="container">
+    <a href="/home" class="my-[24px] text-justify text-[16px] leading-[26px] text-[#1c84d9] decoration-none hover:underline"> << Quay về trang chủ</a>
+    <h1 class="mt-[1.4em] text-[1.8em] leading-[1.4em] font-bold"><span>{{title}}</span></h1>
+    <div class="mt-[10px] mb-[30px] w-[70px] h-[0.1rem] bg-[#ccc]"></div>
+    <!-- content -->
+    <app-editor [config]="{}" [(ngModel)]="htmlData" [readonly]="true" ></app-editor>
+    <!-- content -->
+  </div>
+</div>

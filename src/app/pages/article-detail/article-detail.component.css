@@ -1,0 +1,21 @@
+.container {
+  max-width: 720px;
+  height: auto;
+  min-height: calc(100% - 260px);
+  margin: 0 auto;
+  padding: 20px;
+  word-wrap: break-word;
+  hyphens: auto;
+  position: relative;
+}
+
+.avatar {
+  border: 3px solid #FFF;
+  box-shadow: 0 0 0 3px #1c84d9;
+  border-radius: 23px;
+}
+
+:host ::ng-deep .ck-editor__top{
+  display: none !important;
+}
+

@@ -1,0 +1,29 @@
+<div>
+  <div class="mt-[30px] px-[30px]">
+    <div class="w-[32px] h-[32px] avatar"><img class="w-full h-full object-cover rounded-[50%]" src="https://snacky.blog/img/avatar.jpg" alt="avatar" /></div>
+  </div>
+  <div class="container">
+    <a href="/home" class="my-[24px] text-justify text-[16px] leading-[26px] text-[#1c84d9] decoration-none hover:underline"> << Quay về trang chủ</a>
+    <form class="mt-[50px]" (ngSubmit)="onSubmit()" [formGroup]="editArticleForm">
+      <input formControlName="id" [hidden]="true">
+      <div class="form-group">
+        <label for="titleArticle">Tiêu đề bài viết</label>
+        <input formControlName="title" type="text" class="form-control" id="titleArticle">
+      </div>
+      <div class="mt-[20px]">
+        <label for="titleArticle">Nội dung bài viết</label>
+        <app-editor formControlName="content" [(ngModel)]="htmlData"></app-editor>
+      </div>
+      <div class="mt-[20px] form-check">
+        <input formControlName="published" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Xuất bản
+        </label>
+      </div>
+      <div class="mt-[10px] flex justify-end gap-x-[10px] ">
+        <button type="button" class="btn btn-outline-primary min-w-[140px]" type="submit">Lưu</button>
+      </div>
+    </form>
+  </div>
+</div>
+

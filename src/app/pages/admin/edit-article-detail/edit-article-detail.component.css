@@ -1,0 +1,13 @@
+.container {
+  max-width: 800px;
+  height: auto;
+  min-height: calc(100% - 260px);
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.avatar {
+  border: 3px solid #FFF;
+  box-shadow: 0 0 0 3px #1c84d9;
+  border-radius: 23px;
+}

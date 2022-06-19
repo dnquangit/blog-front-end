@@ -1,1 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-feature-settings: "liga","tnum","case","calt","zero","ss01","locl";
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border: 0;
+}
+::-webkit-scrollbar-track {
+    background-color: #eee;
+}
+
+.max_line-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+/* ck editor */
+body {
+    /* We need to assaign this CSS Custom property to the body instead of :root, because of CSS Specificity and codepen stylesheet placement before loaded CKE5 content. */
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
+}
+  
+.ck.ck-content ul,
+.ck.ck-content ul li {
+    list-style-type: inherit;
+}
+
+.ck.ck-content .todo-list li {
+    list-style-type: none;
+}
+  
+  
+.ck.ck-content ul {
+    /* Default user agent stylesheet, you can change it to your needs. */
+    padding-left: 40px;
+}
+  
+.ck.ck-content ol,
+.ck.ck-content ol li {
+    list-style-type: decimal;
+}
+.ck.ck-content ol {
+    /* Default user agent stylesheet, you can change it to your needs. */
+    padding-left: 40px;
+}
+
+.ck > h1 {
+    font-size: 20px;
+}
+.ck > h2 {
+    font-size: 15px;
+}
+.ck > h3 {
+    font-size: 5px;
+}
+
+.ck-read-only{
+    border: none !important;
+    border-color: white !important;
+}
+
+.ck-editor__editable {
+    min-height: 500px;
+}
+
