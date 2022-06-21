@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: 720px;
   height: auto;
   min-height: calc(100% - 260px);
   margin: 0 auto;
@@ -10,4 +10,8 @@
   border: 3px solid #FFF;
   box-shadow: 0 0 0 3px #1c84d9;
   border-radius: 23px;
+}
+
+:host ::ng-deep .ck-editor__editable {
+  min-height: 700px;
 }

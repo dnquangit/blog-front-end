@@ -1,13 +1,9 @@
 <div class="modal-header">
-    <h4 class="modal-title font-bold text-primary">Start New Basket?</h4>
+    <h4 class="modal-title font-bold text-primary">{{modalTitle}} </h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
-    <p> </p>
-</div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary min-w-[140px]" (click)="closeModal(true)">Proceed</button>
-    <button type="button" class="btn btn-outline-primary min-w-[140px]" (click)="closeModal(false)">Cancel</button>
+    <button type="button" class="btn btn-outline-primary min-w-[140px]" (click)="closeModal()">Ok</button>
 </div>

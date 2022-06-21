@@ -28,6 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy {
             article.slug = `article/${slugify(article.title)}/${btoa(article.id)}`;
             return article;
           });
+        this.articles.sort((a , b) =>{
+          if (a.createDate <= b.createDate) return -1
+          return 1
+        });
         console.log(this.articles);
       })
       var token = 'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IkFETUlOIiwidXNlcmlkIjoiOThlYzY2YWEtMTNmMi00ZGFlLWE4MmQtMTM0NzY4MmJkMDY1Iiwic3ViIjoiOThlYzY2YWEtMTNmMi00ZGFlLWE4MmQtMTM0NzY4MmJkMDY1IiwiaWF0IjoxNjUwMzU3NTI2LCJleHAiOjE2NTAzNjA1ODZ9.D1BrwNartY4MUEi5t0P3DUE2FdZYwa9xl_obLtIpExY';

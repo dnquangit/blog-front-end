@@ -21,11 +21,11 @@ import { UploadAdapter } from './editor.adapter';
 export class EditorComponent implements OnInit, ControlValueAccessor, OnDestroy {
 
   unsubscribe$: Subject<void> = new Subject();
-  
+  config:any;
   public Editor = CKEditor;
 
   @Input() readonly: boolean = false;
-  @Input() config:any = defaultConfig;
+  @Input() toolbar:any = defaultToolbar;
 
   private _value: string = '';
 
@@ -57,7 +57,11 @@ export class EditorComponent implements OnInit, ControlValueAccessor, OnDestroy 
 
 
   ngOnInit(): void {
-    console.log(this.config);
+    this.config = {
+		...defaultConfig,
+		toolbar: this.toolbar
+	}
+	console.log(this.config)
   }
 
   ngOnDestroy(): void {
@@ -76,62 +80,59 @@ export class EditorComponent implements OnInit, ControlValueAccessor, OnDestroy 
 
 }
 
-const hideToolBar = {
-	toolbar: {
-	}
-};
+const defaultToolbar = {
+	items: [
+		'heading',
+		'|',
+		'fontSize',
+		'fontColor',
+		'fontFamily',
+		'|',
+		'bold',
+		'italic',
+		'strikethrough',
+		'underline',
+		'superscript',
+		'subscript',
+		'specialCharacters',
+		'highlight',
+		'removeFormat',
+		'|',
+		'codeBlock',
+		'code',
+		'htmlEmbed',
+		'blockQuote',
+		'|',
+		'bulletedList',
+		'numberedList',
+		'todoList',
+		'|',
+		'alignment',
+		'outdent',
+		'indent',
+		'horizontalLine',
+		'pageBreak',
+		'|',
+		'-',
+		'link',
+		'imageUpload',
+		'insertTable',
+		'mediaEmbed',
+		'|',
+		'-',
+		'sourceEditing',
+		'restrictedEditingException',
+		'findAndReplace',
+		'textPartLanguage',
+		'-',
+		'undo',
+		'redo'
+	],
+	shouldNotGroupWhenFull: true
+}
 
 const defaultConfig = {
-	toolbar: {
-		items: [
-			'heading',
-			'|',
-			'fontSize',
-			'fontColor',
-			'fontFamily',
-			'|',
-			'bold',
-			'italic',
-			'strikethrough',
-			'underline',
-			'superscript',
-			'subscript',
-			'specialCharacters',
-			'highlight',
-			'removeFormat',
-			'|',
-			'codeBlock',
-			'code',
-			'htmlEmbed',
-			'blockQuote',
-			'|',
-			'bulletedList',
-			'numberedList',
-			'todoList',
-			'|',
-			'alignment',
-			'outdent',
-			'indent',
-			'horizontalLine',
-			'pageBreak',
-			'|',
-			'-',
-			'link',
-			'imageUpload',
-			'insertTable',
-			'mediaEmbed',
-			'|',
-			'-',
-			'sourceEditing',
-			'restrictedEditingException',
-			'findAndReplace',
-			'textPartLanguage',
-			'-',
-			'undo',
-			'redo'
-		],
-		shouldNotGroupWhenFull: true
-	},
+	toolbar: {},
 	language: 'en',
 	image: {
 		toolbar: [
@@ -150,12 +151,12 @@ const defaultConfig = {
 			'tableProperties'
 		]
 	},
-  heading: {
-    options: [
-      { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-      { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-      { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-      { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
-    ]
-  }
+	heading: {
+		options: [
+		{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+		{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+		{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+		{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
+		]
+	}
 };

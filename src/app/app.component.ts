@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-//import * as CustomCKEditor from './components/ck-editor/src/ckeditor';
 
 @Component({
   selector: 'app-root',

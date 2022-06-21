@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Article, ArticleDetail, ArticleResponse, CreateArticleRequest, UpdateArticleRequest } from 'src/app/entities/article';
+import { AuthenticationService } from '../auth/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,9 +12,10 @@ import { Article, ArticleDetail, ArticleResponse, CreateArticleRequest, UpdateAr
 
 export class ArticleService {
   
-  private REST_API_SERVER = "http://localhost:10000";
+  private REST_API_SERVER = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private authenticationService: AuthenticationService) { }
   
   public getPublishedArticles(): Observable<Article[]> {
 
@@ -56,7 +59,6 @@ export class ArticleService {
         published : articleJson["published"],
         order : 1,
       };
-      console.log(result);
       return result;
     }));
 
@@ -66,10 +68,14 @@ export class ArticleService {
 
     const url = this.REST_API_SERVER + "/api/v1/post/" + id;
     
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Bearer ' + this.authenticationService.token
+      })
+    };
 
-    return this.httpClient.put(url, article, {headers}).pipe(map((data:any) => {
+    return this.httpClient.put(url, article, httpOptions).pipe(map((data:any) => {
       return true
     }));
   }
@@ -78,10 +84,14 @@ export class ArticleService {
 
     const url = this.REST_API_SERVER + "/api/v1/post";
     
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Bearer ' + this.authenticationService.token
+      })
+    };
 
-    return this.httpClient.post(url, article, {headers}).pipe(map((articleJson:any) => {
+    return this.httpClient.post(url, article, httpOptions).pipe(map((articleJson:any) => {
       return {
         id : articleJson["id"]
       } as ArticleResponse;

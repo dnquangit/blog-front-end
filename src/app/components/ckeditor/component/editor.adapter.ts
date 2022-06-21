@@ -22,10 +22,10 @@ export class UploadAdapter  {
                 this.uploadService.Upload(request).
                     subscribe(
                         (result)=>{
-                            resolve({ default: result })
-                        },
-                        (error)=>{
-                            reject(data.msg);
+                            if (result)
+                                resolve({ default: result })
+                            else
+                                reject("cann't upload file");
                         }
                     );
             }

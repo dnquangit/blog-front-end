@@ -1,1 +1,35 @@
-<p>login works!</p>
+<!-- Default form login -->
+<form class="container text-center border border-light p-5" (ngSubmit)="onSubmit()" >
+    <p class="h4 mb-4">Sign in</p>
+    <input [(ngModel)]="loginForm.username" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username">
+    <input [(ngModel)]="loginForm.password" name="password" type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+    <div class="d-flex justify-content-around">
+      <!-- <div>
+        <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+      </div> -->
+      <!-- <div>
+        <a href="">Forgot password?</a>
+      </div> -->
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+    
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+
+    <!-- <p>Not a member?
+      <a href="">Register</a>
+    </p> -->
+    <!-- Social login -->
+    <!-- <p>or sign in with:</p>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="facebook"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="github"></mdb-icon>
+    </a> -->
+  </form>

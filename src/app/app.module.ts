@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ArticleService } from './services/article/article.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { EditArticleDetailComponent } from './pages/admin/edit-article-detail/edit-article-detail.component';
@@ -15,6 +15,10 @@ import { LoginComponent } from './pages/admin/login/login.component';
 import { UploadService } from './services/upload/upload-file.service';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditorComponent } from './components/ckeditor/component/editor.component';
+import { AuthenticationService } from './services/auth/authentication.service';
+import 'tw-elements';
+import { AuthGuard } from './guards';
+import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,18 @@ import { EditorComponent } from './components/ckeditor/component/editor.componen
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [ArticleService,NgbActiveModal, UploadService],
+  providers: [
+    ArticleService,
+    NgbActiveModal, 
+    UploadService, 
+    AuthenticationService, 
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorCatchingInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

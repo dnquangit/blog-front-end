@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, switchMap, takeUntil } from 'rxjs';
 import { ArticleDetail, CreateArticleRequest, UpdateArticleRequest } from 'src/app/entities/article';
@@ -21,6 +21,7 @@ export class EditArticleDetailComponent implements OnInit, OnDestroy {
   public htmlData: string = "";
   action:ACTION = ACTION.CREATE;
   id:string = "";
+  toolbar = configToolbar;
   
   param$ = this.route.queryParams;
 
@@ -33,7 +34,8 @@ export class EditArticleDetailComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, 
     private articleService: ArticleService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -76,8 +78,10 @@ export class EditArticleDetailComponent implements OnInit, OnDestroy {
       this.articleService
         .createArticle(createArticleRequest)
         .pipe(takeUntil(this.unsubscribe$))
-        .subscribe((data) => {
-          alert(data);
+        .subscribe((data) =>{
+          if (data?.id && data.id !== "") {
+            this.open("Tạo bài viết thành công");
+          } 
         });
 
     } else if (this.action === ACTION.UPDATE) {
@@ -102,9 +106,14 @@ export class EditArticleDetailComponent implements OnInit, OnDestroy {
     } 
 	}
 
-  open(modal_content: string) {
+  open(modalTitle: string) {
     const modalRef = this.modalService.open(ModalConfirmUpdateComponent);
-    modalRef.componentInstance.modal_content = modal_content;
+    modalRef.componentInstance.modalTitle = modalTitle;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -112,4 +121,51 @@ export class EditArticleDetailComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 }
+
+const configToolbar = {
+	items: [
+		'heading',
+		'|',
+		'fontSize',
+		'fontColor',
+		'fontFamily',
+		'|',
+		'bold',
+		'italic',
+		'strikethrough',
+		'underline',
+		'specialCharacters',
+		'highlight',
+		// 'removeFormat',
+		'|',
+		'codeBlock',
+		'code',
+		'htmlEmbed',
+		'blockQuote',
+		'|',
+		'bulletedList',
+		'numberedList',
+		'todoList',
+		'|',
+		'alignment',
+		'outdent',
+		'indent',
+		'horizontalLine',
+		'pageBreak',
+		'|',
+		'link',
+		'imageUpload',
+		'insertTable',
+		'mediaEmbed',
+		'sourceEditing',
+		// 'restrictedEditingException',
+		// 'findAndReplace',
+		// 'textPartLanguage',
+    // '|',
+		// 'undo',
+		// 'redo'
+	],
+	shouldNotGroupWhenFull: true
+}
+
 

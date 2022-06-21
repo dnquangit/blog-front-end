@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UploadRequest } from 'src/app/entities/upload';
+import { environment } from 'src/environments/environment';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,25 +12,24 @@ import { UploadRequest } from 'src/app/entities/upload';
 
 export class UploadService {
   
-  private REST_API_SERVER = "http://localhost:10000";
+  private REST_API_SERVER = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
   public Upload(request:UploadRequest): Observable<string> {
-    console.log(request);
     const url = this.REST_API_SERVER + "/api/v1/upload";
     
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + this.authenticationService.token
+      })
+    };
 
     const formData = new FormData();
     formData.append("file", request.file);
-    console.log(formData);
    
-    return this.httpClient.post(url, formData).pipe(map((response:any) => {
-      console.log("response");
-      console.log(response);
-      return response.data.url
+    return this.httpClient.post(url, formData, httpOptions).pipe(map((response:any) => {
+      return response?.data?.url
     }));
   }
   
