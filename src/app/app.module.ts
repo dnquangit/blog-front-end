@@ -16,7 +16,6 @@ import { UploadService } from './services/upload/upload-file.service';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditorComponent } from './components/ckeditor/component/editor.component';
 import { AuthenticationService } from './services/auth/authentication.service';
-import 'tw-elements';
 import { AuthGuard } from './guards';
 import { ErrorCatchingInterceptor } from './interceptors/error-catching.interceptor';
 
