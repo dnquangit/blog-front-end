@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+/.vs/VSWorkspaceState.json
+/.vs/blog-front-end/project-colors.json
+/.vs/blog-front-end/v17/.suo
+/.vs/slnx.sqlite

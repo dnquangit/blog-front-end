@@ -1,7 +1,7 @@
 #!/bin/sh
 
 APP_NAME=blog-front-end
-DOCKER_FILE=./deploy.local.dockerfile
+DOCKER_FILE=./deploy.production.dockerfile
 DOCKER_PORT=80
 LOCAL_PORT=4300
 LOCAL_NGINX_CONF=nginx
