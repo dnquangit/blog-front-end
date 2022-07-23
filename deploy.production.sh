@@ -1,7 +1,6 @@
 #!/bin/sh
 
 APP_NAME=blog-front-end
-PLATFORM=linux/amd64
 DOCKER_FILE=./deploy.local.dockerfile
 DOCKER_PORT=80
 LOCAL_PORT=4300
