@@ -2,9 +2,10 @@
 FROM node:14.15.0-alpine3.11 as build-stage
 WORKDIR /app
 ARG APP_NAME=blog-front-end
-RUN npm install -g @angular/cli@13.3.8
+
 COPY ./package.json .
-RUN npm install
+RUN npm install --verbose
+
 COPY . .
 RUN npm run build
 
